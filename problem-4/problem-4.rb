@@ -4,14 +4,11 @@
 
 maxPalindrome = 0
 
-for firstFactor in Range.new( 100, 999 )
-    for secondFactor in Range.new( 100, 999 )
+Range.new( 100, 999 ).reverse_each do | firstFactor |
+    Range.new( firstFactor, 999 ).reverse_each do | secondFactor |
         product = firstFactor * secondFactor
-        if product.to_s == product.to_s.reverse
-            if product > maxPalindrome
-                maxPalindrome = product
-            end
-        end
+        break if product < maxPalindrome
+        maxPalindrome = product if product.to_s == product.to_s.reverse and product > maxPalindrome
     end
 end
 
